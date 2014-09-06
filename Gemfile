@@ -7,6 +7,7 @@ gem 'rails', '3.2.18'
 
 gem 'pg'
 gem 'devise'
+gem 'omniauth-twitter'
 
 group :development do
   gem 'pry-rails'
