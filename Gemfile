@@ -11,6 +11,7 @@ gem 'omniauth-twitter'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'cancan'
 
 group :development do
   gem 'pry-rails'

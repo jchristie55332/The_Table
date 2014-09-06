@@ -37,6 +37,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
     callsite (0.0.11)
+    cancan (1.6.10)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.1.0)
@@ -174,6 +175,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  cancan
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails

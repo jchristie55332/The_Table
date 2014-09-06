@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
   # GET /restaurants
   # GET /restaurants.json
   def index
@@ -25,6 +25,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   # GET /restaurants/new.json
   def new
+    authorize! :new, @restaurant
+
     @restaurant = Restaurant.new
 
     respond_to do |format|
