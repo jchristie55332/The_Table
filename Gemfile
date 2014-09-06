@@ -6,7 +6,7 @@ gem 'rails', '3.2.18'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'devise'
 
 group :development do
   gem 'pry-rails'
