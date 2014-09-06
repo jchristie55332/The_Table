@@ -14,6 +14,8 @@ gem 'slim'
 gem 'cancan'
 gem 'therubyracer'
 gem 'less-rails'
+gem 'kaminari'
+gem 'haml-rails'
 
 group :development do
   gem 'pry-rails'

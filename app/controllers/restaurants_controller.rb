@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.order(:created_at).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   # GET /restaurants/new.json
   def new
-    authorize! :new, @restaurant
+    # authorize! :new, @restaurant
 
     @restaurant = Restaurant.new
 

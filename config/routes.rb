@@ -3,7 +3,9 @@ require 'sidekiq/web'
 TheTable::Application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
-  resources :restaurants
+  resources :restaurants do
+    get 'page/:page', action: :index, on: :collection
+  end
   
   mount Sidekiq::Web, at: '/sidekiq'
 
