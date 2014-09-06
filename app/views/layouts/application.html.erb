@@ -5,18 +5,35 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> |
-    <%= link_to "Login", new_user_session_path %>
-    <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
-  <% end %>
-  
+
+  <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">The Table</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <% if user_signed_in? %>
+                <li>Logged in as <%= current_user.email %></li>
+                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <li><%= link_to "Login", new_user_session_path %></li>
+                <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
