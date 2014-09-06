@@ -8,6 +8,9 @@ gem 'rails', '3.2.18'
 gem 'pg'
 gem 'devise'
 gem 'omniauth-twitter'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development do
   gem 'pry-rails'
