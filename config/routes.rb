@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 
 TheTable::Application.routes.draw do
+  resources :images
+
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :restaurants do

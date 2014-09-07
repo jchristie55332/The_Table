@@ -17,6 +17,8 @@ gem 'less-rails'
 gem 'kaminari'
 gem 'haml-rails'
 gem 'ransack'
+gem "rmagick"
+gem "carrierwave"
 
 group :development do
   gem 'pry-rails'
