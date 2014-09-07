@@ -19,6 +19,8 @@ gem 'haml-rails'
 gem 'ransack'
 gem "rmagick"
 gem "carrierwave"
+gem 'fog'
+gem 'carrierwave_direct'
 
 group :development do
   gem 'pry-rails'
