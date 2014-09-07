@@ -3,6 +3,15 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+<%= search_form_for @search do |f| %>
+  <p>
+    <%= f.label :name_cont %>
+    <%= f.text_field :name_cont %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>

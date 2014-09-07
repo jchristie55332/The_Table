@@ -3,7 +3,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.order(:created_at).page(params[:page])
+    @search = Restaurant.search(params[:q])
+    @restaurants = @search.result.order(:created_at).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -16,6 +16,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'kaminari'
 gem 'haml-rails'
+gem 'ransack'
 
 group :development do
   gem 'pry-rails'
