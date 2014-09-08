@@ -2,7 +2,13 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images=[]
+    images = Image.all
+    images.each do |image|
+      if image.user_id == current_user.id
+        @images << image
+      end
+    end
     @uploader = Image.new.picture
     @uploader.success_action_redirect = new_image_url
     respond_to do |format|
