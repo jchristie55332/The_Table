@@ -1,5 +1,2 @@
-%h1 New chat
-
-= render 'form'
-
-= link_to 'Back', chats_path
+- @chats.each do |chat|
+  = chat.message

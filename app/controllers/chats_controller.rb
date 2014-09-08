@@ -30,7 +30,7 @@ class ChatsController < ApplicationController
   # GET /chats/new
   # GET /chats/new.json
   def new
-    @chat = Chat.new
+    @chats = Chat.where(restaurant_id: params[:restaurant])
 
     respond_to do |format|
       format.html # new.html.erb
