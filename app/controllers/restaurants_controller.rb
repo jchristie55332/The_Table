@@ -45,7 +45,6 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(params[:restaurant])
-
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -55,6 +54,11 @@ class RestaurantsController < ApplicationController
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
+    user = User.find(current_user.id)
+    user.restaurant_id = @restaurant.id
+    user.save
+    binding.pry
+
   end
 
   # PUT /restaurants/1

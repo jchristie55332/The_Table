@@ -20,7 +20,6 @@
       <th><%= model_class.human_attribute_name(:lat) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -32,21 +31,16 @@
         <td><%= restaurant.lat %></td>
         <td><%= restaurant.price %></td>
         <td><%=l restaurant.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_restaurant_path(restaurant), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      restaurant_path(restaurant),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= paginate @restaurants %>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<% if current_user.restaurant %>
+ <%= link_to t('.edit', :default => t("helpers.links.edit")),
+             edit_restaurant_path(current_user.restaurant), :class => 'btn btn-primary' %>
+<% elsif current_user.role == "manager" %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
             new_restaurant_path,
             :class => 'btn btn-primary' %>
+<% end %>

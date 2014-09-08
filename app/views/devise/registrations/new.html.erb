@@ -6,6 +6,9 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true %></div>
 
+  <div><%= f.label :role %><br />
+  <%= f.select :role, ["manager", "user"] %></div>
+
   <% if f.object.password_required? %>
 
   <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
