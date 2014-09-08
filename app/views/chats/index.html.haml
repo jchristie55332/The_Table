@@ -3,16 +3,14 @@
 %table
   %tr
     %th Message
+  %tbody.message
 
-  - @chats.each do |chat|
-    %tr
-      %td= chat.message
 %br
 
 #new_note.form
   = form_tag "", id: "post_chat" do |f|
     = hidden_field_tag :user_id, current_user.id
-    = hidden_field_tag :restaurant_id, current_user.id
+    = hidden_field_tag :restaurant_id, params[:restaurant]
     .field
       = text_field_tag :message
     .actions

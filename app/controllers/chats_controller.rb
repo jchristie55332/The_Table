@@ -13,6 +13,7 @@ class ChatsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @chats }
     end
+
   end
 
   # GET /chats/1

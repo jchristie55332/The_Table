@@ -3,13 +3,15 @@ var railsChat = railsChat || {};
 railsChat.fields = ["username", "other_user", "message"]
 
 railsChat.getNotes = function(){
-  $("table tbody").html("")
+  $("table tbody.message").html("")
 
   $.getJSON("/chats", function(data){
     $.each(data, function(i, chat){
-      var row = $("<tr>"+
-        "<td>"+ chat.message +"</td></tr>")
-      row.appendTo("table tbody")
+      if(chat.restaurant_id === $('#restaurant_id').val()){
+        var row = $("<tr>"+
+          "<td>"+ chat.message +"</td></tr>")
+        row.appendTo("table tbody.message")
+      }
     })
   })
 }
