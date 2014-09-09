@@ -9,7 +9,7 @@
   .field
     = f.hidden_field :user_id, :value => current_user.id
   .field  
-    = hidden_field_tag :restaurant_id, params[:restaurant]
+    = f.hidden_field :restaurant_id, :value => params[:restaurant]
   .field
     = f.label :date
     = f.date_select :date
