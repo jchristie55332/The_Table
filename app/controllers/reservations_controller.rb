@@ -2,7 +2,13 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = []
+    reservations = Reservation.all
+    reservations.each do |r|
+      if r.user_id == current_user.id
+        @reservations << r
+      end
+    end
     @reservations_by_date = @reservations.group_by(&:date)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     respond_to do |format|

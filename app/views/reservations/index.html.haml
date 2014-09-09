@@ -10,8 +10,4 @@
     - if @reservations_by_date[date]
       %ul
         - @reservations_by_date[date].each do |reservation|
-          %li= link_to reservation.user_id, reservation
-
-
-
-= link_to 'New Reservation', new_reservation_path
+          %li= link_to reservation.restaurant.name, reservation

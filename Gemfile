@@ -21,6 +21,7 @@ gem "rmagick"
 gem "carrierwave"
 gem 'fog'
 gem 'carrierwave_direct'
+gem 'twilio-ruby'
 
 group :development do
   gem 'pry-rails'
