@@ -14,9 +14,9 @@
   <% end %>
 
   <map zoom="11">
-    <marker position="current" centered="true"></marker>
+    <marker position="current" centered="true" on-click="foo()"></marker>
   </map>
-
+  {{restaurants}}
   <table class="table table-striped">
     <thead>
       <tr>
@@ -33,18 +33,16 @@
       <% @restaurants.each do |restaurant| %>
         <tr>
           <td><%= link_to restaurant.id, restaurant_path(restaurant) %></td>
-          <td><%= restaurant.name %></td>
-          <td><%= restaurant.lng %></td>
-          <td><%= restaurant.lat %></td>
+          <td id="name"><%= restaurant.name %></td>
+          <td id="lng"><%= restaurant.lng %></td>
+          <td id="lat"><%= restaurant.lat %></td>
           <td><%= restaurant.price %></td>
-          <td><%=l restaurant.created_at %></td>
           <td><%= link_to t('.show', :default => t("helpers.links.show")),
                       restaurant_path(restaurant), :class => 'btn btn-mini' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= paginate @restaurants %>
   <% if current_user.restaurant %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
              edit_restaurant_path(current_user.restaurant), :class => 'btn btn-primary' %>

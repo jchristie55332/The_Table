@@ -3,11 +3,17 @@ var ngMap={services:{},directives:{}};ngMap.services.Attr2Options=function($pars
 (function() {
 
   var app = angular.module('theTable', ['ngMap']);
-  app.controller('mapController', ["$scope", function($scope) {
-    console.log("hello")
+  app.controller('mapController', ["$scope", "$http", function($scope, $http) {
+    $scope.foo = function(event) {
+      alert('this is at '+ this.getPosition());
+      };
+    $http.get("/restaurants.json").success(function(data){
+      console.log(data)
+      $scope.restaurants = data
 
 
-
+    })
+      console.log()
   }]);
   
 })();
