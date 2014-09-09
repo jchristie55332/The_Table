@@ -16,33 +16,29 @@
   <map zoom="11">
     <marker position="current" centered="true" on-click="foo()"></marker>
   </map>
-  {{restaurants}}
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:id) %></th>
         <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:lng) %></th>
         <th><%= model_class.human_attribute_name(:lat) %></th>
         <th><%= model_class.human_attribute_name(:price) %></th>
-        <th><%= model_class.human_attribute_name(:created_at) %></th>
-
       </tr>
     </thead>
     <tbody>
-      <% @restaurants.each do |restaurant| %>
-        <tr>
-          <td><%= link_to restaurant.id, restaurant_path(restaurant) %></td>
-          <td id="name"><%= restaurant.name %></td>
-          <td id="lng"><%= restaurant.lng %></td>
-          <td id="lat"><%= restaurant.lat %></td>
-          <td><%= restaurant.price %></td>
-          <td><%= link_to t('.show', :default => t("helpers.links.show")),
-                      restaurant_path(restaurant), :class => 'btn btn-mini' %></td>
-        </tr>
-      <% end %>
+      <tr ng-repeat="restaurant in restaurants | orderBy: 'name' | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <td>{{ restaurant.name }}</td>
+        <td>{{ restaurant.lng }}</td>
+        <td>{{ restaurant.lat }}</td>
+        <td>{{ restaurant.price }}</td>
+        <td><a class='btn btn-primary' href="/restaurants/{{restaurant.id}}">Show</a></td>
+      </tr>
     </tbody>
   </table>
+  <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+  {{currentPage+1}}/{{numberOfPages()}}
+  <button ng-disabled="currentPage >= restaurants.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+
   <% if current_user.restaurant %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
              edit_restaurant_path(current_user.restaurant), :class => 'btn btn-primary' %>

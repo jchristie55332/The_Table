@@ -8,12 +8,19 @@ var ngMap={services:{},directives:{}};ngMap.services.Attr2Options=function($pars
       alert('this is at '+ this.getPosition());
       };
     $http.get("/restaurants.json").success(function(data){
-      console.log(data)
       $scope.restaurants = data
-
-
     })
-      console.log()
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+      return Math.ceil($scope.restaurants.length/$scope.pageSize);                
+    }
   }]);
+  app.filter('startFrom', function() {
+      return function(input, start) {
+          start = +start; //parse to int
+          return input.slice(start);
+      }
+  });
   
 })();
