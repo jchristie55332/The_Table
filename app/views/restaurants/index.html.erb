@@ -1,49 +1,56 @@
 <%- model_class = Restaurant -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<%= search_form_for @search do |f| %>
-  <p>
-    <%= f.label :name_cont %>
-    <%= f.text_field :name_cont %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:lng) %></th>
-      <th><%= model_class.human_attribute_name(:lat) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+<div ng-controller="mapController" class="ng-scope">
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  </div>
+  <%= search_form_for @search do |f| %>
+    <p>
+      <%= f.label :name_cont %>
+      <%= f.text_field :name_cont %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
 
-    </tr>
-  </thead>
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
+  <map zoom="11">
+    <marker position="current" centered="true"></marker>
+  </map>
+
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to restaurant.id, restaurant_path(restaurant) %></td>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.lng %></td>
-        <td><%= restaurant.lat %></td>
-        <td><%= restaurant.price %></td>
-        <td><%=l restaurant.created_at %></td>
-        <td><%= link_to t('.show', :default => t("helpers.links.show")),
-                      restaurant_path(restaurant), :class => 'btn btn-mini' %></td>
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:lng) %></th>
+        <th><%= model_class.human_attribute_name(:lat) %></th>
+        <th><%= model_class.human_attribute_name(:price) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate @restaurants %>
-<% if current_user.restaurant %>
- <%= link_to t('.edit', :default => t("helpers.links.edit")),
+    </thead>
+    <tbody>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= link_to restaurant.id, restaurant_path(restaurant) %></td>
+          <td><%= restaurant.name %></td>
+          <td><%= restaurant.lng %></td>
+          <td><%= restaurant.lat %></td>
+          <td><%= restaurant.price %></td>
+          <td><%=l restaurant.created_at %></td>
+          <td><%= link_to t('.show', :default => t("helpers.links.show")),
+                      restaurant_path(restaurant), :class => 'btn btn-mini' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @restaurants %>
+  <% if current_user.restaurant %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
              edit_restaurant_path(current_user.restaurant), :class => 'btn btn-primary' %>
-<% elsif current_user.role == "manager" %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
+  <% elsif current_user.role == "manager" %>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
             new_restaurant_path,
             :class => 'btn btn-primary' %>
-<% end %>
+  <% end %>
+</div>
