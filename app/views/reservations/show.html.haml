@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @reservation.user_id
+%p
+  %b Restaurant:
+  = @reservation.restaurant_id
+%p
+  %b Date:
+  = @reservation.date
+%p
+  %b Start time:
+  = @reservation.start_time
+
+= link_to 'Edit', edit_reservation_path(@reservation)
+\|
+= link_to 'Back', reservations_path

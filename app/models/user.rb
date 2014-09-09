@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :chats
   has_many :images
+  has_many :reservations
   belongs_to :restaurant
 
   # Setup accessible (or protected) attributes for your model
