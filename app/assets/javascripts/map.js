@@ -4,17 +4,48 @@ var ngMap={services:{},directives:{}};ngMap.services.Attr2Options=function($pars
 
   var app = angular.module('theTable', ['ngMap']);
   app.controller('mapController', ["$scope", "$http", function($scope, $http) {
+
+
+
+
     $scope.foo = function(event) {
       alert('this is at '+ this.getPosition());
       };
     $http.get("/restaurants.json").success(function(data){
-      $scope.restaurants = data
+      navigator.geolocation.getCurrentPosition(function(position){
+
+        $scope.currentLat = position.coords.latitude
+        $scope.currentLng = position.coords.longitude
+        debugger
+        for (var i = 0; i < data.length; i++) {
+          var R = 6371;
+          var lat1 = data[i].lat;
+          var lon1 = data[i].lng;
+          var lat2 = $scope.currentLat;
+          var lon2 = $scope.currentLng;
+          var x = (lon2-lon1) * Math.cos((lat1+lat2)/2);
+          var y = (lat2-lat1);
+          var d = Math.sqrt(x*x + y*y) * R;
+          data[i].distance = d;
+          console.log(R);
+          console.log(lat1);
+          console.log(lon1);
+          console.log(lat2);
+          console.log(lon2);
+          console.log(x);
+          console.log(y);
+          console.log(d);
+        }
+      });
+
+      $scope.restaurants = data;
     })
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.numberOfPages=function(){
       return Math.ceil($scope.restaurants.length/$scope.pageSize);                
     }
+
   }]);
   app.filter('startFrom', function() {
       return function(input, start) {

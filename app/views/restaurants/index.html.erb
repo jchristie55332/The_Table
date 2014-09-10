@@ -3,15 +3,10 @@
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
-  <%= search_form_for @search do |f| %>
-    <p>
-      <%= f.label :name_cont %>
-      <%= f.text_field :name_cont %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
-  <% end %>
+
+  <input ng-model="search.name" />
+  <input ng-model="search.price" />
+
 
   <map zoom="11">
     <marker position="current" centered="true" on-click="foo()"></marker>
@@ -23,14 +18,16 @@
         <th><%= model_class.human_attribute_name(:lng) %></th>
         <th><%= model_class.human_attribute_name(:lat) %></th>
         <th><%= model_class.human_attribute_name(:price) %></th>
+        <th><%= model_class.human_attribute_name(:distance) %></th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="restaurant in restaurants | orderBy: 'name' | startFrom:currentPage*pageSize | limitTo:pageSize">
+      <tr ng-repeat="restaurant in restaurants | filter:search:strict | orderBy: 'name' | startFrom:currentPage*pageSize | limitTo:pageSize">
         <td>{{ restaurant.name }}</td>
         <td>{{ restaurant.lng }}</td>
         <td>{{ restaurant.lat }}</td>
         <td>{{ restaurant.price }}</td>
+        <td>{{ restaurant.distance }}</td>
         <td><a class='btn btn-primary' href="/restaurants/{{restaurant.id}}">Show</a></td>
       </tr>
     </tbody>
