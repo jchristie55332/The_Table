@@ -40,6 +40,12 @@
 
     });
 
+    $scope.selectRestaurant = function(restaurant){
+      debugger
+      $scope.selectedRestaurant = restaurant;
+
+
+    }
 
     $scope.currentPage = 0;
     $scope.pageSize = 10;

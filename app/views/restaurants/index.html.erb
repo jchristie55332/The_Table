@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="restaurant in restaurants | filter:search:strict | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize">
+      <tr ng-repeat="restaurant in restaurants | filter:search:strict | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)">
         <td>{{ restaurant.name }}</td>
         <td>{{ restaurant.lng }}</td>
         <td>{{ restaurant.lat }}</td>
@@ -47,6 +47,16 @@
             new_restaurant_path,
             :class => 'btn btn-primary' %>
   <% end %>
+
+  <div ng-show="selectedRestaurant">
+
+    Name: {{ selectedRestaurant.name }}<br>
+    Average Price: {{ selectedRestaurant.price }}<br>
+    Distance: {{ selectedRestaurant.distance }}<br>
+
+  </div>
+
+
 </div>
 </br>
 </br>
