@@ -5,7 +5,7 @@
 
     $scope.map = {
       center: {latitude: 50.522420999999994, longitude: -0.109708 },
-      zoom: 18
+      zoom: 11
     };
     console.log($scope.map)
 

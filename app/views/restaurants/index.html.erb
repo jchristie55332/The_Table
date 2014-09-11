@@ -7,7 +7,11 @@
   <input ng-model="search.name" />
   <input ng-model="search.price" />
   <div id="map_canvas">
-    <google-map center="map.center" zoom="map.zoom" draggable="true" options="options"></google-map>
+    <google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+      <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" >
+        <marker-label content="restaurant.name" anchor="2 0"/>
+      </marker>
+    </google-map>
   </div>
 
   <table class="table table-striped">
