@@ -44,9 +44,11 @@ ActiveRecord::Schema.define(:version => 20140909103527) do
     t.string   "name"
     t.float    "lng"
     t.float    "lat"
-    t.string   "price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "price"
+    t.string   "food_style"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -64,6 +66,8 @@ ActiveRecord::Schema.define(:version => 20140909103527) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "provider"
     t.string   "uid"
     t.string   "role"

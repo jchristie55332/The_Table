@@ -1,23 +1,23 @@
-(function() {
 
-  var app = angular.module('theTable', ['google-maps']);
+
+  
   app.controller('mapController', ["$scope", "$http", function($scope, $http) {
-
     $scope.map = {
       center: {latitude: 50.522420999999994, longitude: -0.109708 },
       zoom: 11
     };
-    console.log($scope.map)
 
     $scope.foo = function(event) {
       alert('this is at '+ this.getPosition());
       };
+
     $http.get("/restaurants.json").success(function(data){
       navigator.geolocation.getCurrentPosition(function(position){
-
-        $scope.currentLat = position.coords.latitude
+        $scope.$apply(function() {
+          $scope.currentLat = position.coords.latitude
         $scope.currentLng = position.coords.longitude
         $scope.map.center = {latitude: $scope.currentLat, longitude: $scope.currentLng };
+
         for (var i = 0; i < data.length; i++) {
 
           var lat1 = data[i].lat;
@@ -34,6 +34,7 @@
 
           data[i].distance = d;
         }
+      })
       });
 
       $scope.restaurants = data;
@@ -41,10 +42,11 @@
     });
 
     $scope.selectRestaurant = function(restaurant){
-      debugger
       $scope.selectedRestaurant = restaurant;
+    }
 
-
+    $scope.showSearch = function(){
+      $scope.boo = true;
     }
 
     $scope.currentPage = 0;
@@ -55,10 +57,13 @@
 
   }]);
   app.filter('startFrom', function() {
+
       return function(input, start) {
           start = +start; //parse to int
+          console.log("here")
+          console.log(input)
           return input.slice(start);
       }
   });
+
   
-})();

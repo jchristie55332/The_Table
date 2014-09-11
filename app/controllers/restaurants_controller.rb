@@ -57,7 +57,6 @@ class RestaurantsController < ApplicationController
     user = User.find(current_user.id)
     user.restaurant_id = @restaurant.id
     user.save
-    binding.pry
 
   end
 

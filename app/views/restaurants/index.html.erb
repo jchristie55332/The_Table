@@ -3,9 +3,13 @@
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
-
-  <input ng-model="search.name" />
-  <input ng-model="search.price" />
+  <div ng-show="boo">
+  Name: <input ng-model="search.name" /><br><br>
+  Price: <input ng-model="search.price" /><br><br>
+  </div>
+  <div ng-hide="boo">
+    <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
+  </div>
   <div id="map_canvas">
     <google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
       <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" >
@@ -53,6 +57,8 @@
     Name: {{ selectedRestaurant.name }}<br>
     Average Price: {{ selectedRestaurant.price }}<br>
     Distance: {{ selectedRestaurant.distance }}<br>
+    Food Style: {{selectedRestaurant.food_style}}<br>
+    <a class='btn btn-primary' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
 
   </div>
 

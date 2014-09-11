@@ -12,6 +12,14 @@
   <dd><%= @restaurant.lat %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
   <dd><%= @restaurant.price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:food_style) %>:</strong></dt>
+  <dd><%= @restaurant.food_style %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @restaurant.description %></dd>
+  <% if current_user.images.length != 0 %>
+    <%= image_tag @restaurant.user.images.first.picture_url %>
+  <% end %>
+
 </dl>
 <% if current_user.restaurant_id == @restaurant.id %>
   <div class="form-actions">
