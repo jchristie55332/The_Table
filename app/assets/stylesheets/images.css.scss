@@ -1,6 +1,17 @@
-// Place all the styles related to the images controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body, #map_canvas {
+            height: 400px;
+            width: 100%;
+            
+        }
 
-map, div[map] {display:block; width:960px; height:400px;}
-@media only screen and (max-width: 960px) { map, div[map] {display:block; width:640px; height:400px;} }
+        #map_canvas {
+            position: relative;
+        }
+
+        .angular-google-map-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }

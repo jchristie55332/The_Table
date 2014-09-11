@@ -6,11 +6,10 @@
 
   <input ng-model="search.name" />
   <input ng-model="search.price" />
+  <div id="map_canvas">
+    <google-map center="map.center" zoom="map.zoom" draggable="true" options="options"></google-map>
+  </div>
 
-
-  <map zoom="11">
-    <marker position="current" centered="true" on-click="foo()"></marker>
-  </map>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -22,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="restaurant in restaurants | filter:search:strict | orderBy: 'name' | startFrom:currentPage*pageSize | limitTo:pageSize">
+      <tr ng-repeat="restaurant in restaurants | filter:search:strict | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize">
         <td>{{ restaurant.name }}</td>
         <td>{{ restaurant.lng }}</td>
         <td>{{ restaurant.lat }}</td>
