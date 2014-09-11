@@ -5,7 +5,14 @@
   </div>
   <div ng-show="boo">
   Name: <input ng-model="search.name" /><br><br>
-  Price: <input ng-model="search.price" /><br><br>
+  Price: <input ng-keyup="numSearch()" ng-model="nums" /><br><br>
+  <p>
+    <label for="amount">Price range:</label>
+    <input type="text" id="amount" readonly>
+  </p>
+   {{search}}
+  <div id="slider-range"></div>
+
   </div>
   <div ng-hide="boo">
     <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
@@ -29,7 +36,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="restaurant in restaurants | filter:search:strict | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)">
+      <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)">
         <td>{{ restaurant.name }}</td>
         <td>{{ restaurant.lng }}</td>
         <td>{{ restaurant.lat }}</td>

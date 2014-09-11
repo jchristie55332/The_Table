@@ -7,10 +7,6 @@
       zoom: 11
     };
 
-    $scope.foo = function(event) {
-      alert('this is at '+ this.getPosition());
-      };
-
     $http.get("/restaurants.json").success(function(data){
       navigator.geolocation.getCurrentPosition(function(position){
         $scope.$apply(function() {
@@ -48,6 +44,17 @@
     $scope.showSearch = function(){
       $scope.boo = true;
     }
+    $scope.numSearch = function(){
+      for (var i = 0; i < $scope.restaurants.length; i++) {
+        if($scope.restaurants[i].price >= $scope.nums){
+
+          console.log($scope.restaurants)
+
+        }
+
+    }
+
+    }
 
     $scope.currentPage = 0;
     $scope.pageSize = 10;
@@ -57,11 +64,8 @@
 
   }]);
   app.filter('startFrom', function() {
-
       return function(input, start) {
           start = +start; //parse to int
-          console.log("here")
-          console.log(input)
           return input.slice(start);
       }
   });

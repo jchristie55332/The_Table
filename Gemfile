@@ -41,6 +41,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
   gem 'twitter-bootstrap-rails'
   gem 'angularjs-rails'
+  gem 'jquery-ui-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
