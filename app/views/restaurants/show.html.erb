@@ -35,6 +35,16 @@
     <a href="/chats/new">Chat</a>
   </div>
 <% else %>
-  <a href="/chats?restaurant=<%= @restaurant.id %>">Chat</a>
   <a href="/reservations/new?restaurant=<%= @restaurant.id %>">Make a Reservation</a>
+  <a href="/reviews/new?restaurant=<%= @restaurant.id %>">Review</a>
+<% end %>
+<% if @reviews %>
+  <% @reviews.each do |review| %>
+  <div class="well well-sm">
+    <h3><%= review.title %></h3>
+    <h6><%= review.created_at %></h6>
+    <p><%= review.review %></p>
+  </div>
+  <% end %>   
+
 <% end %>

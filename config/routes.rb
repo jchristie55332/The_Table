@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 
 TheTable::Application.routes.draw do
+  resources :reviews
+
+
   resources :reservations
 
 
