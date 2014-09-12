@@ -2,16 +2,10 @@ require 'sidekiq/web'
 
 TheTable::Application.routes.draw do
   resources :reviews
-
-
   resources :reservations
-
-
   resources :chats
-
-
   resources :images
-
+  resources :messages, only: [:new, :create]
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
