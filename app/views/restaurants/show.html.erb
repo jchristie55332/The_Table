@@ -37,6 +37,7 @@
 <% else %>
   <a href="/reservations/new?restaurant=<%= @restaurant.id %>">Make a Reservation</a>
   <a href="/reviews/new?restaurant=<%= @restaurant.id %>">Review</a>
+  <a href="/messages/new?restaurant=<%= @restaurant.id %>">Email</a>
 <% end %>
 <% if @reviews %>
   <% @reviews.each do |review| %>
