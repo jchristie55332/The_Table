@@ -51,7 +51,7 @@
             new_restaurant_path,
             :class => 'btn btn-primary' %>
   <% end %>
-
+<br><br>
   <div class="well well-lg" ng-show="selectedRestaurant">
     <a class="close" ng-click="hideSelectRestaurant()">×</a>
     <a class='btn btn-primary close' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
