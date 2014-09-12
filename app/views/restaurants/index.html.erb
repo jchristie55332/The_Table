@@ -5,7 +5,7 @@
   </div>
   <div ng-show="boo">
   Name: <input ng-model="search.name" /><br><br>
-  Price: <input ng-keyup="numSearch()" ng-model="nums" /><br><br>
+  Min Price: <input ng-keyup="numSearch()" ng-model="nums" /><br><br>
   <p>
     <label for="amount">Price range:</label>
     <input type="text" id="amount" readonly>
@@ -19,7 +19,7 @@
   </div>
   <div id="map_canvas">
     <google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
-      <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" >
+      <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" options="{ visible: restaurant.hide }">
         <marker-label content="restaurant.name" anchor="2 0"/>
       </marker>
     </google-map>
@@ -36,12 +36,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)">
+      <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)" ng-show="restaurant.hide">
         <td>{{ restaurant.name }}</td>
         <td>{{ restaurant.lng }}</td>
         <td>{{ restaurant.lat }}</td>
         <td>{{ restaurant.price }}</td>
         <td>{{ restaurant.distance }}</td>
+        <td>{{ restaurant.hide }}</td>
         <td><a class='btn btn-primary' href="/restaurants/{{restaurant.id}}">Show</a></td>
       </tr>
     </tbody>

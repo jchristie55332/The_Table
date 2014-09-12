@@ -29,6 +29,7 @@
           var d = R * c;
 
           data[i].distance = d;
+          data[i].hide = true;
         }
       })
       });
@@ -46,13 +47,15 @@
     }
     $scope.numSearch = function(){
       for (var i = 0; i < $scope.restaurants.length; i++) {
-        if($scope.restaurants[i].price >= $scope.nums){
-
-          console.log($scope.restaurants)
+        if($scope.restaurants[i].price <= $scope.nums){
+          $scope.restaurants[i].hide = false;
+        }else{
+          $scope.restaurants[i].hide = true;
+          
 
         }
-
-    }
+      }
+      console.log($scope.restaurants)
 
     }
 
