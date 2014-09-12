@@ -1,22 +1,20 @@
 <%- model_class = Restaurant -%>
-<div ng-controller="mapController" class="ng-scope">
+<div ng-controller="mapController">
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
-  <div ng-show="boo">
-  Name: <input ng-model="search.name" /><br><br>
-  Min Price: <input ng-keyup="numSearch()" ng-model="nums" /><br><br>
-  <p>
-    <label for="amount">Price range:</label>
-    <input type="text" id="amount" readonly>
-  </p>
-   {{search}}
-  <div id="slider-range"></div>
 
+  <div class="well well-lg" ng-show="boo">
+    <a class="close" ng-click="hideSearch()">×</a>
+    Name: <input ng-model="search.name" /><br><br>
+    Food Type: <input ng-model="search.food_style" /><br><br>
+    Max Price: <input ng-keyup="numSearch()" ng-model="nums" />
   </div>
+
   <div ng-hide="boo">
     <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
   </div>
+
   <div id="map_canvas">
     <google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
       <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" options="{ visible: restaurant.hide }">
@@ -29,8 +27,6 @@
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:lng) %></th>
-        <th><%= model_class.human_attribute_name(:lat) %></th>
         <th><%= model_class.human_attribute_name(:price) %></th>
         <th><%= model_class.human_attribute_name(:distance) %></th>
       </tr>
@@ -38,12 +34,8 @@
     <tbody>
       <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)" ng-show="restaurant.hide">
         <td>{{ restaurant.name }}</td>
-        <td>{{ restaurant.lng }}</td>
-        <td>{{ restaurant.lat }}</td>
         <td>{{ restaurant.price }}</td>
         <td>{{ restaurant.distance }}</td>
-        <td>{{ restaurant.hide }}</td>
-        <td><a class='btn btn-primary' href="/restaurants/{{restaurant.id}}">Show</a></td>
       </tr>
     </tbody>
   </table>
@@ -60,14 +52,13 @@
             :class => 'btn btn-primary' %>
   <% end %>
 
-  <div ng-show="selectedRestaurant">
-
+  <div class="well well-lg" ng-show="selectedRestaurant">
+    <a class="close" ng-click="hideSelectRestaurant()">×</a>
+    <a class='btn btn-primary close' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
     Name: {{ selectedRestaurant.name }}<br>
     Average Price: {{ selectedRestaurant.price }}<br>
     Distance: {{ selectedRestaurant.distance }}<br>
     Food Style: {{selectedRestaurant.food_style}}<br>
-    <a class='btn btn-primary' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
-
   </div>
 
 

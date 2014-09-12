@@ -30,6 +30,8 @@
 
           data[i].distance = d;
           data[i].hide = true;
+          data[i].hide_max = true;
+
         }
       })
       });
@@ -42,21 +44,26 @@
       $scope.selectedRestaurant = restaurant;
     }
 
+    $scope.hideSelectRestaurant = function(){
+      $scope.selectedRestaurant = false;
+    }
+
     $scope.showSearch = function(){
       $scope.boo = true;
     }
+
     $scope.numSearch = function(){
       for (var i = 0; i < $scope.restaurants.length; i++) {
-        if($scope.restaurants[i].price <= $scope.nums){
+        if($scope.restaurants[i].price >= $scope.nums){
           $scope.restaurants[i].hide = false;
         }else{
           $scope.restaurants[i].hide = true;
-          
-
         }
       }
-      console.log($scope.restaurants)
+    }
 
+    $scope.hideSearch = function(){
+      $scope.boo = false;
     }
 
     $scope.currentPage = 0;
