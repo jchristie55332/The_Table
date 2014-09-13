@@ -16,8 +16,8 @@
   <dd><%= @restaurant.food_style %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @restaurant.description %></dd>
-  <% if current_user.images.length != 0 %>
-    <%= image_tag @restaurant.user.images.first.picture_url %>
+  <% if @images.length > 0 %>
+    <%= image_tag @images.first.picture_url %>
   <% end %>
 
 </dl>
