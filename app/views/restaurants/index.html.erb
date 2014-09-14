@@ -3,7 +3,7 @@
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
-
+<div ng-show""hello>
   <div class="well well-lg" ng-show="boo">
     <a class="close" ng-click="hideSearch()">×</a>
     Name: <input ng-model="search.name" /><br><br>
@@ -42,7 +42,7 @@
   <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
   {{currentPage+1}}/{{numberOfPages()}}
   <button ng-disabled="currentPage >= restaurants.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
-
+  </div>
   <% if current_user.restaurant %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
              edit_restaurant_path(current_user.restaurant), :class => 'btn btn-primary' %>

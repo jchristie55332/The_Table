@@ -31,7 +31,7 @@
           data[i].distance = d;
           data[i].hide = true;
           data[i].hide_max = true;
-
+          $scope.hello = true;
         }
       })
       });
