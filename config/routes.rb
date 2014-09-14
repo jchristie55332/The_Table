@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 TheTable::Application.routes.draw do
+  use_doorkeeper
+
   resources :reviews
   resources :reservations
   resources :chats

@@ -22,6 +22,7 @@ gem "carrierwave"
 gem 'fog'
 gem 'carrierwave_direct'
 gem 'twilio-ruby'
+gem 'doorkeeper'
 
 group :development do
   gem "letter_opener"
