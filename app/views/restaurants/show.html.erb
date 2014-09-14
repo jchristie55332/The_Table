@@ -16,11 +16,16 @@
   <dd><%= @restaurant.food_style %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @restaurant.description %></dd>
-  <% if @images.length > 0 %>
-    <%= image_tag @images.first.picture_url %>
-  <% end %>
-
 </dl>
+
+  <ul class="thumbnails">
+    <% @images.each do |image| %>
+      <li class="span4">
+        <%= image_tag image.picture_url %>
+      </li>
+    <% end %>
+  </ul>
+
 <% if current_user.restaurant_id == @restaurant.id %>
   <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -37,8 +42,9 @@
 <% else %>
   <a href="/reservations/new?restaurant=<%= @restaurant.id %>">Make a Reservation</a>
   <a href="/reviews/new?restaurant=<%= @restaurant.id %>">Review</a>
-  <a href="/messages/new?restaurant=<%= @restaurant.id %>">Email</a>
-<% end %>
+  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Email
+  </button><% end %>
 <% if @reviews %>
   <% @reviews.each do |review| %>
   <div class="well well-sm">
@@ -49,3 +55,25 @@
   <% end %>   
 
 <% end %>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        <h4 class="modal-title" id="myModalLabel">Email the Restaurant</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag messages_path, method: :post do %>
+          <%= hidden_field_tag :user_id, current_user.id %>
+          <%= hidden_field_tag :restaurant_id, @restaurant.id %>
+          <%= text_area_tag :content %><br>
+          <%= submit_tag %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
