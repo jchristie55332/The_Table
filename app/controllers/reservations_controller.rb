@@ -47,9 +47,13 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    @reservation = Reservation.new(params[:reservation])
-    restaurant = Restaurant.find(params[:reservation][:restaurant_id])
-    TextMessage.new(@reservation.restaurant.name).send
+    @reservation = Reservation.new()
+    @reservation.user_id = params[:user_id]
+    @reservation.restaurant_id = params[:restaurant_id]
+    @reservation.date = params[:date]
+    @reservation.start_time = params[:start_time]
+    restaurant = Restaurant.find(params[:restaurant_id])
+    TextMessage.new(restaurant.name).send
     UserMailer.registration_confirmation(current_user, @reservation, restaurant).deliver
     respond_to do |format|
       if @reservation.save
