@@ -1,0 +1,26 @@
+<div ng-controller="reservationsController" class="container-fluid">
+  Date: <input ng-model="search.date" /><br><br>
+
+  Date: <select  ng-model="search.date">
+    <option ng-repeat="reservation in reservations" value="{{reservation.date}}">{{reservation.date}}</option>
+  </select>
+
+  <table>
+    <thead>
+      <th>
+        <td>Date</td>
+        <td>Time</td>
+      </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="reservation in reservations | filter:search:strict | filter:matchAmount | orderBy: 'date' ">
+        <td>{{ reservation.date }}</td>
+        <td>{{ reservation.start_time }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+</div>

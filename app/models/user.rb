@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :restaurant
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :role, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :role, :first_name, :last_name, :mobile
   # attr_accessible :title, :body
 
   def self.from_omniauth(auth)

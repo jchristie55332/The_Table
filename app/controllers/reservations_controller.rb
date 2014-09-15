@@ -17,6 +17,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def restaurant_reservations
+    @restaurant = Restaurant.find(current_user.restaurant_id)
+    @reservations = Reservation.where(restaurant_id: @restaurant.id)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @reservations }
+    end
+  end
+
   # GET /reservations/1
   # GET /reservations/1.json
   def show

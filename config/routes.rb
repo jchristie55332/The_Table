@@ -3,6 +3,7 @@ require 'sidekiq/web'
 TheTable::Application.routes.draw do
   resources :reviews
   resources :reservations
+  get '/restaurant_reservations', to: 'reservations#restaurant_reservations'
   resources :chats
   resources :images
   resources :messages, only: [:new, :create]

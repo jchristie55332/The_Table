@@ -1,5 +1,5 @@
 class Restaurant < ActiveRecord::Base
-  attr_accessible :lat, :lng, :name, :price, :user_id, :food_style, :description
+  attr_accessible :lat, :lng, :name, :price, :user_id, :food_style, :description, :city
   belongs_to :user
   has_many :reviews
   has_many :reservations

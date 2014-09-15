@@ -6,6 +6,7 @@
   <div>
     <div class="well well-lg" ng-show="boo">
       <a class="close" ng-click="hideSearch()">×</a>
+      City: <input ng-model="search.city" type="radio" name="city" value="London"> London <input ng-model="search.city" type="radio" name="city" value="Edinburgh"> Edinburgh<br><br>
       Name: <input ng-model="search.name" /><br><br>
       Food Type: <input ng-model="search.food_style" /><br><br>
       Max Price: <input ng-keyup="numSearch()" ng-model="nums" />
