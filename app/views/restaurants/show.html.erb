@@ -1,16 +1,9 @@
 <%- model_class = Restaurant -%>
-<div ng-controller="carouselCtrl">
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @restaurant.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @restaurant.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lng) %>:</strong></dt>
-  <dd><%= @restaurant.lng %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lat) %>:</strong></dt>
-  <dd><%= @restaurant.lat %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
   <dd><%= @restaurant.price %></dd>
   <dt><strong><%= model_class.human_attribute_name(:food_style) %>:</strong></dt>
@@ -19,9 +12,9 @@
   <dd><%= @restaurant.description %></dd>
 </dl>
   <ul class="thumbnails">
-      <li class="span4">
-        <img src="{{picture.picture.url}}">
-      </li>
+    <li class="span4">
+      <%= image_tag @images.first.picture_url %>
+    </li>
   </ul>
 
 <% if current_user.restaurant_id == @restaurant.id %>
@@ -33,7 +26,7 @@
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Email</button>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_two">Reserve a Table</button>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_three">Reveiw</button>
-  <button class="btn btn-primary btn-lg" ng-click="cycleImages()">More Images</button>
+  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_four">More Images</button>
 <% end %>
 <% if @reviews %>
   <% @reviews.each do |review| %>
@@ -108,4 +101,24 @@
     </div>
   </div>
 </div>
+</div>
+
+<div class="modal fade" id="myModal_four" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        <h4 class="modal-title" id="myModalLabel">Restaurant Images</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="thumbnails">
+          <% @images.each do |image| %>
+          <li class="span4">
+            <%= image_tag image.picture_url %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
