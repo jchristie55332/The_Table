@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images=Image.all
+    @images=Image.where(user_id: current_user.id)
     @uploader = Image.new.picture
     @uploader.success_action_redirect = new_image_url
     respond_to do |format|

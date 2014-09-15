@@ -1,23 +1,23 @@
 <%- model_class = Restaurant -%>
 <div class="well well-sm">
-<div class="page-header">
-  <h1><%= @restaurant.name %></h1>
-</div>
+  <div class="page-header">
+    <h1><%= @restaurant.name %></h1>
+  </div>
 
-<div class="jumbotron close">
-  <%= image_tag @images.first.picture_url %>
-</div>
+  <div class="jumbotron close">
+    <%= image_tag @images.first.picture_url %>
+  </div>
 
 
-<dl class="dl-horizontal">
-</br>
-  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @restaurant.price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:food_style) %>:</strong></dt>
-  <dd><%= @restaurant.food_style %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @restaurant.description %></dd>
-</dl>
+  <dl class="dl-horizontal">
+  </br>
+    <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+    <dd><%= @restaurant.price %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:food_style) %>:</strong></dt>
+    <dd><%= @restaurant.food_style %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @restaurant.description %></dd>
+  </dl>
 
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Email</button>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_two">Reserve a Table</button>
@@ -27,13 +27,12 @@
 
 <% if @reviews %>
   <% @reviews.each do |review| %>
-  <div class="well well-sm">
-    <h3><%= review.title %></h3>
-    <h6><%= review.created_at %></h6>
-    <p><%= review.review %></p>
-  </div>
+    <div class="well well-sm">
+      <h3><%= review.title %></h3>
+      <h6><%= review.created_at %></h6>
+      <p><%= review.review %></p>
+    </div>
   <% end %>   
-
 <% end %>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
