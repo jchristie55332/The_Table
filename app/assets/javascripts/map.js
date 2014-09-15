@@ -6,14 +6,13 @@
       center: {latitude: 50.522420999999994, longitude: -0.109708 },
       zoom: 11
     };
-
+console.log("1")
     $http.get("/restaurants.json").success(function(data){
       navigator.geolocation.getCurrentPosition(function(position){
         $scope.$apply(function() {
           $scope.currentLat = position.coords.latitude
         $scope.currentLng = position.coords.longitude
         $scope.map.center = {latitude: $scope.currentLat, longitude: $scope.currentLng };
-
         for (var i = 0; i < data.length; i++) {
 
           var lat1 = data[i].lat;
@@ -37,6 +36,7 @@
       });
 
       $scope.restaurants = data;
+      console.log("3")
 
     });
 
@@ -71,7 +71,8 @@
     $scope.numberOfPages=function(){
       if($scope.restaurants){
       return Math.ceil($scope.restaurants.length/$scope.pageSize);
-      }   
+      }
+      console.log("4")   
     }
 
   }]);
@@ -82,6 +83,7 @@
           return input.slice(start);
         };
       }
+      console.log("5")
   });
 
   

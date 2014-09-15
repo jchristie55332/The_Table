@@ -1,6 +1,11 @@
 <%- model_class = Restaurant -%>
 <div class="page-header">
   <h1><%= @restaurant.name %></h1>
+  <ul class="thumbnails">
+    <li class="span4">
+      <%= image_tag @images.first.picture_url %>
+    </li>
+  </ul>
 </div>
 
 <dl class="dl-horizontal">
@@ -11,16 +16,13 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @restaurant.description %></dd>
 </dl>
-  <ul class="thumbnails">
-    <li class="span4">
-      <%= image_tag @images.first.picture_url %>
-    </li>
-  </ul>
+
 
 <% if current_user.restaurant_id == @restaurant.id %>
   <div class="form-actions">
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_restaurant_path(@restaurant), :class => 'btn' %>
+  <%= link_to "Add images", images_path %>
   </div>
 <% else %>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Email</button>
