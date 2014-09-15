@@ -16,5 +16,8 @@
   .field
     = f.label :start_time
     = f.time_select :start_time
+  .field
+    = f.label :seats
+    = f.select :seats, [1, 2, 3, 4, 5, 6, 7, 8, 9]
   .actions
     = f.submit 'Save'

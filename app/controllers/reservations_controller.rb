@@ -61,6 +61,7 @@ class ReservationsController < ApplicationController
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.date = params[:date]
     @reservation.start_time = params[:start_time]
+    @reservation.seats = params[:seats]
     restaurant = Restaurant.find(params[:restaurant_id])
     TextMessage.new(restaurant.name).send
     UserMailer.registration_confirmation(current_user, @reservation, restaurant).deliver
