@@ -34,8 +34,8 @@
     <tbody>
       <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)" ng-show="restaurant.hide">
         <td>{{ restaurant.name }}</td>
-        <td>{{ restaurant.price }}</td>
-        <td>{{ restaurant.distance }}</td>
+        <td>£{{ restaurant.price }}</td>
+        <td>{{ restaurant.distance }}km</td>
       </tr>
     </tbody>
   </table>
@@ -56,8 +56,8 @@
     <a class="close" ng-click="hideSelectRestaurant()">×</a>
     <a class='btn btn-primary close' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
     Name: {{ selectedRestaurant.name }}<br>
-    Average Price: {{ selectedRestaurant.price }}<br>
-    Distance: {{ selectedRestaurant.distance }}<br>
+    Average Price: £{{ selectedRestaurant.price }}<br>
+    Distance: {{ selectedRestaurant.distance }} km<br>
     Food Style: {{selectedRestaurant.food_style}}<br>
   </div>
 
