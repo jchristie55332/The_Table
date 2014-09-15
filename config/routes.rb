@@ -3,6 +3,14 @@ require 'sidekiq/web'
 TheTable::Application.routes.draw do
   use_doorkeeper
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :reservations
+      match "user", to: "users#show"
+    end
+  end
+
+
   resources :reviews
   resources :reservations
   resources :chats

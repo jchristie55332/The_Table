@@ -5,7 +5,7 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do |routes|
-    User.find(current_user.id) || redirect_to(new_user_session_path)
+    User.find(current_user.id) || redirect_to(new_user_session_path(return_to: request.fullpath))
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
