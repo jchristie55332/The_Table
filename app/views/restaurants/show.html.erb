@@ -1,14 +1,16 @@
 <%- model_class = Restaurant -%>
+<div class="well well-sm">
 <div class="page-header">
   <h1><%= @restaurant.name %></h1>
-  <ul class="thumbnails">
-    <li class="span4">
-      <%= image_tag @images.first.picture_url %>
-    </li>
-  </ul>
 </div>
 
+<div class="jumbotron close">
+  <%= image_tag @images.first.picture_url %>
+</div>
+
+
 <dl class="dl-horizontal">
+</br>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
   <dd><%= @restaurant.price %></dd>
   <dt><strong><%= model_class.human_attribute_name(:food_style) %>:</strong></dt>
@@ -17,19 +19,12 @@
   <dd><%= @restaurant.description %></dd>
 </dl>
 
-
-<% if current_user.restaurant_id == @restaurant.id %>
-  <div class="form-actions">
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_restaurant_path(@restaurant), :class => 'btn' %>
-  <%= link_to "Add images", images_path %>
-  </div>
-<% else %>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Email</button>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_two">Reserve a Table</button>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_three">Reveiw</button>
   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_four">More Images</button>
-<% end %>
+</div>
+
 <% if @reviews %>
   <% @reviews.each do |review| %>
   <div class="well well-sm">

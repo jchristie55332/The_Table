@@ -1,67 +1,66 @@
 <%- model_class = Restaurant -%>
-<div ng-controller="mapController">
+<div ng-controller="mapController" class="container-fluid">
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
-<div>
-  <div class="well well-lg" ng-show="boo">
-    <a class="close" ng-click="hideSearch()">×</a>
-    Name: <input ng-model="search.name" /><br><br>
-    Food Type: <input ng-model="search.food_style" /><br><br>
-    Max Price: <input ng-keyup="numSearch()" ng-model="nums" />
-  </div>
+  <div>
+    <div class="well well-lg" ng-show="boo">
+      <a class="close" ng-click="hideSearch()">×</a>
+      Name: <input ng-model="search.name" /><br><br>
+      Food Type: <input ng-model="search.food_style" /><br><br>
+      Max Price: <input ng-keyup="numSearch()" ng-model="nums" />
+    </div>
 
-  <div ng-hide="boo">
-    <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
-  </div>
+    <div ng-hide="boo">
+      <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
+    </div>
 
-  <div id="map_canvas">
-    <google-map center="map.center" zoom="map.zoom" options="options" refresh={{map.reload}}>
-      <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" options="{ visible: restaurant.hide }">
-        <marker-label content="restaurant.name" anchor="2 0"/>
-      </marker>
-    </google-map>
-  </div>
+    <div id="map_canvas">
+      <google-map center="map.center" zoom="map.zoom" options="options" refresh={{map.reload}}>
+        <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" options="{ visible: restaurant.hide }">
+          <marker-label content="restaurant.name" anchor="2 0"/>
+        </marker>
+      </google-map>
+    </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:price) %></th>
-        <th><%= model_class.human_attribute_name(:distance) %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)" ng-show="restaurant.hide">
-        <td>{{ restaurant.name }}</td>
-        <td>£{{ restaurant.price }}</td>
-        <td>{{ restaurant.distance }}km</td>
-      </tr>
-    </tbody>
-  </table>
-  <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
-  {{currentPage+1}}/{{numberOfPages()}}
-  <button ng-disabled="currentPage >= restaurants.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
-  </div>
-  <% if current_user.restaurant %>
-    <%= link_to t('.edit', :default => t("helpers.links.edit")),
-             edit_restaurant_path(current_user.restaurant), :class => 'btn btn-primary' %>
-  <% elsif current_user.role == "manager" %>
-    <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_restaurant_path,
-            :class => 'btn btn-primary' %>
-  <% end %>
-<br><br>
-  <div class="well well-lg" ng-show="selectedRestaurant">
-    <a class="close" ng-click="hideSelectRestaurant()">×</a>
-    <a class='btn btn-primary close' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
-    Name: {{ selectedRestaurant.name }}<br>
-    Average Price: £{{ selectedRestaurant.price }}<br>
-    Distance: {{ selectedRestaurant.distance }} km<br>
-    Food Style: {{selectedRestaurant.food_style}}<br>
-  </div>
+    <div class="continer-fluid">
+      <div class="col-md-8">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= model_class.human_attribute_name(:name) %></th>
+              <th><%= model_class.human_attribute_name(:price) %></th>
+              <th><%= model_class.human_attribute_name(:distance) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="restaurant in restaurants | filter:search:strict | filter:matchAmount | orderBy: 'distance' | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectRestaurant(restaurant)" ng-show="restaurant.hide">
+              <td>{{ restaurant.name }}</td>
+              <td>£{{ restaurant.price }}</td>
+              <td>{{ restaurant.distance }}km</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button ng-disabled="currentPage >= restaurants.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="well well-lg" ng-show="selectedRestaurant">
+          <a class="close" ng-click="hideSelectRestaurant()">×</a>
+          <a class='btn btn-primary close' href="/restaurants/{{selectedRestaurant.id}}">Show</a>
+          Name: {{ selectedRestaurant.name }}<br>
+          Average Price: £{{ selectedRestaurant.price }}<br>
+          Distance: {{ selectedRestaurant.distance }} km<br>
+          Food Style: {{selectedRestaurant.food_style}}<br>
+        </div>
+      </div>
+    </div>
 
 
+  </div>
+  </br>
+  </br>
 </div>
-</br>
-</br>
