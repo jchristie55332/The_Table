@@ -8,14 +8,12 @@
   <table>
     <thead>
       <th>
-        <td>Date</td>
         <td>Time</td>
         <td>Seats</td>
       </th>
     </thead>
     <tbody>
       <tr ng-repeat="reservation in reservations | filter:search:strict | filter:matchAmount | orderBy: 'date' ">
-        <td>{{ reservation.date }}</td>
         <td>{{ reservation.start_time }}</td>
         <td>{{ reservation.seats }}</td>
       </tr>

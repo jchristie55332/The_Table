@@ -3,9 +3,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @search = Restaurant.search(params[:q])
-    @restaurants = @search.result
-
+    @restaurants = Restaurant.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @restaurants }
