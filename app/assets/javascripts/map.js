@@ -60,10 +60,6 @@
       }
     }
 
-    $scope.hideSearch = function(){
-      $scope.boo = false;
-    }
-
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.numberOfPages=function(){

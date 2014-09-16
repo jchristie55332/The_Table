@@ -1,31 +1,28 @@
 <%- model_class = Restaurant -%>
 <div ng-controller="mapController" class="container-fluid">
-  <div class="page-header">
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-  </div>
   <div>
-    <div class="well well-lg" ng-show="boo">
-      <a class="close" ng-click="hideSearch()">×</a>
-      City: <input ng-model="search.city" type="radio" name="city" value="London"> London <input ng-model="search.city" type="radio" name="city" value="Edinburgh"> Edinburgh<br><br>
-      Name: <input ng-model="search.name" /><br><br>
-      Food Style:<select  ng-model="search.food_style">
-        <option ng-repeat="style in food_styles" value="{{style}}">{{style}}</option>
-      </select>
-      Max Price: <input ng-keyup="numSearch()" ng-model="nums" />
-    </div>
-
-    <div ng-hide="boo">
-      <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
-    </div>
-    <div id="map_canvas">
-      <google-map center="map.center" zoom="map.zoom" options="options" refresh={{map.reload}}>
+    <div ng-if="hello" id="map_canvas">
+      <google-map center="map.center", zoom="map.zoom", options="options">
         <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" options="{ visible: restaurant.hide }">
           <marker-label content="restaurant.name" anchor="2 0"/>
         </marker>
       </google-map>
     </div>
 
-    <div class="continer-fluid">
+    <div class="well well-lg" ng-show="boo">
+      City: <input id="radio_1" ng-model="search.city" type="radio" name="city" value="London"> London <input id="radio_2" ng-model="search.city" type="radio" name="city" value="Edinburgh"> Edinburgh<br><br>
+      Name: <input id="search_name" ng-model="search.name" /><br><br>
+      Food Style:<select id="search_select" ng-model="search.food_style">
+        <option ng-repeat="style in food_styles" value="{{style}}">{{style}}</option>
+      </select><br><br>
+      Max Price: <input id="search_price" ng-keyup="numSearch()" ng-model="nums" />
+    </div>
+
+    <div ng-if="hello" ng-hide="boo">
+      <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
+    </div>
+
+    <div ng-if="hello" class="continer-fluid">
       <div class="col-md-8">
         <table class="table table-striped">
           <thead>
