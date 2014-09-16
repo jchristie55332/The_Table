@@ -74,6 +74,8 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
+    # authorize! :destroy, @image
+
     @image = Image.find(params[:id])
     @image.destroy
 

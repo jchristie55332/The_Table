@@ -76,6 +76,8 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
+    # authorize! :destroy, @review
+
     @review = Review.find(params[:id])
     @review.destroy
 

@@ -94,6 +94,8 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
+    # authorize! :destroy, @reservation
+
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
 

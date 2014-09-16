@@ -38,6 +38,8 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1/edit
   def edit
+    # authorize! :edit, @restaurant
+
     @restaurant = Restaurant.find(params[:id])
   end
 
@@ -79,6 +81,8 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
+    # authorize! :destroy, @restaurant
+
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
 
