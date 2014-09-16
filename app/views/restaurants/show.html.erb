@@ -1,4 +1,5 @@
 <% model_class = Restaurant %>
+<div ng-controller="restController">
 <div class="well well-sm">
   <div class="page-header">
     <h1><%= @restaurant.name %></h1>
@@ -34,88 +35,89 @@
     </div>
   <% end %>   
 <% end %>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
-        <h4 class="modal-title" id="myModalLabel">Email the Restaurant</h4>
+  <div style="display: none" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" data-dismiss="alert">×</a>
+          <h4 class="modal-title" id="myModalLabel">Email the Restaurant</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag messages_path, method: :post do %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= hidden_field_tag :restaurant_id, @restaurant.id %>
+            <%= text_area_tag :content %><br>
+            <%= submit_tag %>
+            <% end %>
+        </div>
       </div>
-      <div class="modal-body">
-        <%= form_tag messages_path, method: :post do %>
-          <%= hidden_field_tag :user_id, current_user.id %>
-          <%= hidden_field_tag :restaurant_id, @restaurant.id %>
-          <%= text_area_tag :content %><br>
-          <%= submit_tag %>
+    </div>
+  </div>
+
+
+  <div style="display: none" class="modal fade" id="myModal_two" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+          <h4 class="modal-title" id="myModalLabel">Reserve a Table</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag reservations_path, method: :post do %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= hidden_field_tag :restaurant_id, @restaurant.id %>        
+            <input type="date" id="date" name="date"></input>
+            <input type="time" id="start_time" name="start_time"></input>
+            <%= label_tag :seats %>
+            <%= number_field_tag :seats %><br>
+            <%= submit_tag %>
           <% end %>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="myModal_two" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
-        <h4 class="modal-title" id="myModalLabel">Reserve a Table</h4>
-      </div>
-      <div class="modal-body">
-        <%= form_tag reservations_path, method: :post do %>
-          <%= hidden_field_tag :user_id, current_user.id %>
-          <%= hidden_field_tag :restaurant_id, @restaurant.id %>        
-          <input type="date" id="date" name="date"></input>
-          <input type="time" id="start_time" name="start_time"></input>
-          <%= label_tag :seats %>
-          <%= number_field_tag :seats %><br>
-          <%= submit_tag %>
-        <% end %>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="myModal_three" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
-        <h4 class="modal-title" id="myModalLabel">Review this Restaurant</h4>
-      </div>
-      <div class="modal-body">
-        <%= form_tag reviews_path, method: :post do %>
-          <%= hidden_field_tag :user_id, current_user.id %>
-          <%= hidden_field_tag :restaurant_id, @restaurant.id %>
-          <%= label_tag :title %>
-          <%= text_field_tag :title %><br>
-          <%= label_tag :review %>
-          <%= text_area_tag :review %><br>
-          <%= submit_tag %>
-        <% end %>
-
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="myModal_four" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
-        <h4 class="modal-title" id="myModalLabel">Restaurant Images</h4>
-      </div>
-      <div class="modal-body">
-        <ul class="thumbnails">
-          <% @images.each do |image| %>
-          <li class="span4">
-            <%= image_tag image.picture_url %>
-          </li>
+  <div style="display: none" class="modal fade" id="myModal_three" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+          <h4 class="modal-title" id="myModalLabel">Review this Restaurant</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag reviews_path, method: :post do %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= hidden_field_tag :restaurant_id, @restaurant.id %>
+            <%= label_tag :title %>
+            <%= text_field_tag :title %><br>
+            <%= label_tag :review %>
+            <%= text_area_tag :review %><br>
+            <%= submit_tag %>
           <% end %>
-        </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div style="display: none" class="modal fade" id="myModal_four" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+          <h4 class="modal-title" id="myModalLabel">Restaurant Images</h4>
+        </div>
+        <div class="modal-body">
+          <ul class="thumbnails">
+            <% @images.each do |image| %>
+            <li class="span4">
+              <%= image_tag image.picture_url %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
