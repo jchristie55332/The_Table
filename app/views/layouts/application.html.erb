@@ -29,6 +29,7 @@
               <% if current_user.restaurant %>
                 <li><%= link_to "Edit your Restaurant", edit_restaurant_path(current_user.restaurant) %></li>
                 <li><%= link_to "Add images", images_path %></li>
+                <li><%= link_to "Your Restaurant Reservations", restaurant_reservations_path %></li>
               <% elsif current_user.role == "manager" %>
                 <li><%= link_to "Add your Restaurant", new_restaurant_path %></li>
               <% end %>
