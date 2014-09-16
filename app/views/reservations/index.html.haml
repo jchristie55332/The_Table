@@ -10,4 +10,5 @@
     - if @reservations_by_date[date]
       %ul
         - @reservations_by_date[date].each do |reservation|
-          %li= link_to reservation.restaurant.name, reservation
+          %h6= reservation.restaurant.name
+          %p= reservation.start_time
