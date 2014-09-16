@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/1.json
   def show
     @reservation = Reservation.find(params[:id])
-
+    @user = User.find(@reservation.user_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @reservation }
@@ -99,7 +99,7 @@ class ReservationsController < ApplicationController
     @reservation.destroy
 
     respond_to do |format|
-      format.html { redirect_to reservations_url }
+      format.html { redirect_to restaurant_reservations_path }
       format.json { head :no_content }
     end
   end

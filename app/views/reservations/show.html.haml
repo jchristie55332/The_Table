@@ -2,17 +2,16 @@
 
 %p
   %b User:
-  = @reservation.user_id
-%p
-  %b Restaurant:
-  = @reservation.restaurant_id
+  = @user.email
 %p
   %b Date:
   = @reservation.date
 %p
   %b Start time:
   = @reservation.start_time
+%p
+  %b Seats:
+  = @reservation.seats
 
-= link_to 'Edit', edit_reservation_path(@reservation)
-\|
-= link_to 'Back', reservations_path
+%p= link_to 'Destroy', @reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
