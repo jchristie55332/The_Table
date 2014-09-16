@@ -8,14 +8,15 @@
       <a class="close" ng-click="hideSearch()">×</a>
       City: <input ng-model="search.city" type="radio" name="city" value="London"> London <input ng-model="search.city" type="radio" name="city" value="Edinburgh"> Edinburgh<br><br>
       Name: <input ng-model="search.name" /><br><br>
-      Food Type: <input ng-model="search.food_style" /><br><br>
+      Food Style:<select  ng-model="search.food_style">
+        <option ng-repeat="style in food_styles" value="{{style}}">{{style}}</option>
+      </select>
       Max Price: <input ng-keyup="numSearch()" ng-model="nums" />
     </div>
 
     <div ng-hide="boo">
       <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
     </div>
-
     <div id="map_canvas">
       <google-map center="map.center" zoom="map.zoom" options="options" refresh={{map.reload}}>
         <marker ng-repeat="restaurant in restaurants | filter:search:strict" coords="{ latitude: restaurant.lat, longitude: restaurant.lng}" idkey="restaurant.id" options="{ visible: restaurant.hide }">

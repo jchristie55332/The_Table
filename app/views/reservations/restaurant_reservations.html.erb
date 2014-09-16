@@ -2,7 +2,7 @@
   Date: <input ng-model="search.date" /><br><br>
 
   Date: <select  ng-model="search.date">
-    <option ng-repeat="reservation in reservations" value="{{reservation.date}}">{{reservation.date}}</option>
+    <option ng-repeat="date in dates" value="{{date}}">{{date}}</option>
   </select>
 
   <table>
