@@ -63,8 +63,6 @@ class ReservationsController < ApplicationController
     @reservation.start_time = params[:start_time]
     @reservation.seats = params[:seats]
     restaurant = Restaurant.find(params[:restaurant_id])
-    TextMessage.new(restaurant.name).send
-    UserMailer.registration_confirmation(current_user, @reservation, restaurant).deliver
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to reservations_path, notice: 'Reservation was successfully created.' }
@@ -74,6 +72,7 @@ class ReservationsController < ApplicationController
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
+    PygmentsWorker.perform_async(current_user.id, @reservation.id, restaurant.id)
   end
 
   # PUT /reservations/1

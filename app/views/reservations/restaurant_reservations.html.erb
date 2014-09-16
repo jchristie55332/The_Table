@@ -15,7 +15,7 @@
     <tbody>
       <tr ng-repeat="reservation in reservations | filter:search:strict | filter:matchAmount | orderBy: 'date' ">
         <td></td>
-        <td>{{ reservation.start_time }}</td>
+        <td>{{ reservation.start_time.strftime("%I:%M %p") }}</td>
         <td>{{ reservation.seats }}</td>
         <td><a href="/reservations/{{reservation.id}}">Show</a></td>
       </tr>

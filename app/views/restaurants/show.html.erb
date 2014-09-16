@@ -30,7 +30,7 @@
   <% @reviews.each do |review| %>
     <div class="well well-sm">
       <h3><%= review.title %></h3>
-      <h6><%= review.created_at %></h6>
+      <h6><%= review.created_at.to_s(:long) %></h6>
       <p><%= review.review %></p>
     </div>
   <% end %>   

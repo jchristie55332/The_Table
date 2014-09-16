@@ -11,4 +11,4 @@
       %ul
         - @reservations_by_date[date].each do |reservation|
           %h6= reservation.restaurant.name
-          %p= reservation.start_time
+          %p= reservation.start_time.strftime("%I:%M %p")
