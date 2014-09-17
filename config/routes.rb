@@ -19,6 +19,14 @@ TheTable::Application.routes.draw do
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      get '/me' => "credentials#me"
+      get '/fast' => 'fast#index'
+    end
+  end
+
   resources :restaurants do
     get 'page/:page', action: :index, on: :collection
   end
