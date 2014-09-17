@@ -1,19 +1,9 @@
-%h1 Listing images
-
-%table
-  %tr
-    %th Name
-    %th
-    %th
-
-  - @images.each do |image|
-    %tr
-      %td= image.name
-      %td= link_to 'Show', image_path(image)
-      %td= link_to 'Edit', edit_image_path(image)
-      %td= link_to 'Destroy', image, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
 = direct_upload_form_for @uploader do |f|
   %p= f.file_field :picture
   %p= f.submit "Upload Image"
+
+.row
+  - @images.each do |image|
+    .col-lg-12
+      %a.thumbnail{:href => "#"}
+        %img{:alt => "...", :src => image.picture.url}/
