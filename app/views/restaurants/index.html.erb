@@ -22,6 +22,17 @@
       <a class='btn btn-primary' href="" ng-click="showSearch()">Search</a>
     </div>
 
+    <div ng-hide="hello">
+      <div class="well well-lg">
+        <h1>Hello <%= current_user.username%>!</h1>
+        <h4>
+          Bare with me a wee minute while the map loads.  It will be with you shortly.  Please contact the Restaurant with any questions and if you wish to add your establishment please contact the website Admin.
+
+        </h4>
+
+      </div>
+    </div>
+
     <div ng-if="hello" class="continer-fluid">
       <div class="col-md-8">
         <table class="table table-striped">
