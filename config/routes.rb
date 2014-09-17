@@ -1,6 +1,16 @@
 require 'sidekiq/web'
 
 TheTable::Application.routes.draw do
+  use_doorkeeper
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :reservations
+      match "user", to: "users#show"
+    end
+  end
+
+
   resources :reviews
   resources :reservations
   get '/restaurant_reservations', to: 'reservations#restaurant_reservations'
@@ -8,6 +18,14 @@ TheTable::Application.routes.draw do
   resources :messages, only: [:new, :create]
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      get '/me' => "credentials#me"
+      get '/fast' => 'fast#index'
+    end
+  end
 
   resources :restaurants do
     get 'page/:page', action: :index, on: :collection

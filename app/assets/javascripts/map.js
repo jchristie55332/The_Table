@@ -61,12 +61,12 @@
     }
 
     $scope.currentPage = 0;
-    $scope.pageSize = 10;
+    $scope.pageSize = 1;
     $scope.numberOfPages=function(){
       if($scope.restaurants){
       return Math.ceil($scope.restaurants.length/$scope.pageSize);
-      }
-      console.log("4")   
+
+      };                
     }
 
   }]);
@@ -74,10 +74,10 @@
       return function(input, start) {
           start = +start; //parse to int
           if(input){
-          return input.slice(start);
-        };
+
+            return input.slice(start);
+          };
       }
-      console.log("5")
   });
 
   

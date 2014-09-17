@@ -1,4 +1,4 @@
-class ReservationsController < ApplicationController
+ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
