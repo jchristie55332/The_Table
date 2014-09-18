@@ -61,7 +61,7 @@
     }
 
     $scope.currentPage = 0;
-    $scope.pageSize = 1;
+    $scope.pageSize = 10;
     $scope.numberOfPages=function(){
       if($scope.restaurants){
       return Math.ceil($scope.restaurants.length/$scope.pageSize);
