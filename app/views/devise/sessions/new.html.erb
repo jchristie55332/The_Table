@@ -34,12 +34,9 @@
           <div><%= f.label :username %><br />
           <%= f.text_field :username %></div>
 
-<<<<<<< HEAD
           <div><%= f.label :mobile %><br />
           <%= f.number_field :mobile, :value => "00447"%></div>
 
-=======
->>>>>>> doorkeeper
           <div><%= f.label :first_name %><br />
           <%= f.text_field :first_name %></div>
 
@@ -47,11 +44,7 @@
           <%= f.text_field :last_name %></div>
 
           <div><%= f.label :role %><br />
-<<<<<<< HEAD
           <%= f.select :role, ["user"] %></div>
-=======
-          <%= f.select :role, ["manager", "user"] %></div>
->>>>>>> doorkeeper
 
           <% if f.object.password_required? %>
 
