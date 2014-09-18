@@ -1,0 +1,16 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true]
+	"Chat" [shape=Mrecord, label="{Chat|id :integer\lmessage :string\luser_id :string\lrestaurant_id :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Image" [shape=Mrecord, label="{Image|id :integer\lname :string\lupload_description :string\ldescription :string\luser_id :integer\lcreated_at :datetime\lupdated_at :datetime\lpicture :string\l}"]
+	"Reservation" [shape=Mrecord, label="{Reservation|id :integer\luser_id :integer\lrestaurant_id :integer\ldate :date\lstart_time :time\lcreated_at :datetime\lupdated_at :datetime\lseats :integer\l}"]
+	"Restaurant" [shape=Mrecord, label="{Restaurant|id :integer\lname :string\llng :float\llat :float\lprice :integer\lfood_style :string\ldescription :text\lcreated_at :datetime\lupdated_at :datetime\luser_id :integer\lcity :string\l}"]
+	"Review" [shape=Mrecord, label="{Review|id :integer\ltitle :string\lreview :text\luser_id :integer\lrestaurant_id :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"User" [shape=Mrecord, label="{User|id :integer\lemail :string\lencrypted_password :string\lreset_password_token :string\lreset_password_sent_at :datetime\lremember_created_at :datetime\lsign_in_count :integer\lcurrent_sign_in_at :datetime\llast_sign_in_at :datetime\lcurrent_sign_in_ip :string\llast_sign_in_ip :string\lcreated_at :datetime\lupdated_at :datetime\lusername :string\lfirst_name :string\llast_name :string\lprovider :string\luid :string\lrole :string\lrestaurant_id :integer\lmobile :integer\l}"]
+	"Restaurant" -> "Review" [arrowtail=odot, arrowhead=crow, dir=both color="#7581BE"]
+	"Restaurant" -> "Reservation" [arrowtail=odot, arrowhead=crow, dir=both color="#2B5B5F"]
+	"Restaurant" -> "Chat" [arrowtail=odot, arrowhead=crow, dir=both color="#834559"]
+	"User" -> "Review" [arrowtail=odot, arrowhead=crow, dir=both color="#D7CC62"]
+	"User" -> "Chat" [arrowtail=odot, arrowhead=crow, dir=both color="#A41E97"]
+	"User" -> "Image" [arrowtail=odot, arrowhead=crow, dir=both color="#946328"]
+	"User" -> "Reservation" [arrowtail=odot, arrowhead=crow, dir=both color="#6F7EC3"]
+}
