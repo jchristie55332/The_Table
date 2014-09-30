@@ -4,8 +4,7 @@ module Api::V1
     respond_to :json
 
     def index
-      current_user = User.find(doorkeeper_token.resource_owner_id)
-      @restaurant = Restaurant.find(current_user.restaurant_id)
+      @restaurant = Restaurant.find(current_resource_owner.restaurant_id)
       @reservations = Reservation.  where(restaurant_id: @restaurant.id)
       respond_with @reservations
     end
