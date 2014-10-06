@@ -15,7 +15,7 @@
       Food Style:<select id="search_select" ng-model="search.food_style">
         <option ng-repeat="style in food_styles" value="{{style}}">{{style}}</option>
       </select><br><br>
-      Max Price: <input id="search_price" ng-keyup="numSearch()" ng-model="nums" />
+      Average Price: <input id="search_price" ng-keyup="numSearch()" ng-model="nums" />
     </div>
 
     <div ng-if="hello" ng-hide="boo">
@@ -38,7 +38,7 @@
           <thead>
             <tr>
               <th><%= model_class.human_attribute_name(:name) %></th>
-              <th><%= model_class.human_attribute_name(:price) %></th>
+              <th><%= model_class.human_attribute_name(:average_price_per_meal) %></th>
               <th><%= model_class.human_attribute_name(:distance) %></th>
             </tr>
           </thead>

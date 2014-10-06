@@ -1,17 +1,18 @@
 %p#notice= notice
 
 %p
-  %b User:
+  %b Customer Email:
   = @user.email
 %p
   %b Date:
   = @reservation.date
 %p
   %b Start time:
-  = @reservation.start_time
+  = @reservation.start_time.strftime("%I:%M %p")
 %p
-  %b Seats:
+  %b Number of Seats:
   = @reservation.seats
 
 %p= link_to 'Destroy', @reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%a{:href => "mailto:#{@user.email}"} Email this Customer
 
