@@ -15,9 +15,6 @@
   <div><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></div>
 
-  <div><%= f.label :mobile %><br />
-  <%= f.number_field :mobile %></div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
